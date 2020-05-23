@@ -6,8 +6,10 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 import java.util.Map;
 
-@Mapper
 public interface UserDao {
+
+    @Select("select id,name,password from tb_user where id = #{id}")
+    User getUserById(Integer id);
 
     @Select("select * from tb_user")
     List<User> findAllUsers();
@@ -21,3 +23,4 @@ public interface UserDao {
     @Delete("delete from tb_user where id=#{id}")
     int delUser(Integer id);
 }
+

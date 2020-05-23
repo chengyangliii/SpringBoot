@@ -2,15 +2,12 @@ package com.example.demo.SpringBoot.controller;
 
 import com.example.demo.SpringBoot.dao.UserDao;
 import com.example.demo.SpringBoot.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class MyBatisController {
