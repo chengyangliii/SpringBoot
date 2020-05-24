@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Course Management System</title>
+</head>
+<body class="hold-transition login-page">
+<div style="width:720px;margin:7% auto">
+    <div class="content">
+
+        <!--Course-->
+
+        <div>
+            <h5>Search available courses</h5>
+            <a href="#" onclick="searchCourses()">Search</a>
+        </div>
+        <div>
+            <p id="search"></p>
+        </div>
+
+    <br />
+
+        <div>
+            <h5>Search by ID</h5>
+            <a href="#" onclick="searchByID()">Search</a>
+        </div>
+        <div>
+            <input
+                id="queryId"
+                type="number"
+                placeholder="Enter course ID"/>
+            <p id="searchByID"></p>
+        </div>
+
+    <br />
+
+
+        <div>
+            <h5>Add new course</h5>
+            <a href="#" onclick="Add()">Add Course</a>
+        </div>
+        <div>
+            <input
+                id="addName"
+                type="text"
+                placeholder="Entry name"/>
+            <input
+                id="addYear"
+                type="text"
+                placeholder="Entry year"/>
+            <p id="addCourse"></p>
+        </div>
+
+
+    <br />
+
+
+    <div>
+        <h5>Update Course</h5>
+        <a href="#" onclick="Update()">Update Course</a>
+    </div>
+    <div>
+        <input
+            id="updateId"
+            type="number"
+            placeholder="Entry id"/>
+        <input
+            id="updateName"
+            type="text"
+            placeholder="Entry name"/>
+        <input
+            id="updateYear"
+            type="text"
+            placeholder="Entry Year"/>
+        <p id="updateCourse"></p>
+    </div>
+
+    <br />
+
+    <div>
+        <h5>Delete course</h5>
+        <a href="#" onclick="Delete()">Delete</a>
+    </div>
+    <div>
+        <input
+            id="deleteId"
+            type="number"
+            placeholder="Entry id"/>
+        <p id="deleteCourse"></p>
+    </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.staticfile.org/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+    function searchCourses() {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/api/courses",
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                $("#search").html(JSON.stringify(result));
+            },
+            error: function() {
+                $("#search").html("Error");
+            }
+        });
+    }
+
+    function searchByID() {
+        var id = $("#queryId").val();
+        if (typeof id == "undefined" || id == null || id == "" || id < 0) {
+            return false;
+        }
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/api/courses/" + id,
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                $("#searchByID").html(JSON.stringify(result));
+            },
+            error: function() {
+                $("#searchByID").html("Error");
+            }
+        });
+    }
+
+
+    function Add() {
+        var name = $("#addName").val();
+        var year = $("#addYear").val();
+        var data = { name: name, year: year };
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/api/courses",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function(result) {
+                $("#addCourse").html(JSON.stringify(result));
+            },
+            error: function() {
+                $("#addCourse").html("Error");
+            }
+        });
+    }
+
+
+    function Update() {
+        var id = $("#updateId").val();
+        var name = $("#updateName").val();
+        var year = $("#updateYear").val();
+        var data = { id: id, name: name, year: year };
+        $.ajax({
+            type: "PUT",
+            dataType: "json",
+            url: "/api/courses",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            success: function(result) {
+                $("#updateCourse").html(JSON.stringify(result));
+            },
+            error: function() {
+                $("#updateCourse").html("Error");
+            }
+        });
+    }
+    function Delete() {
+        var id = $("#deleteId").val();
+        if (typeof id == "undefined" || id == null || id == "" || id < 0) {
+            return false;
+        }
+        $.ajax({
+            type: "DELETE",
+            dataType: "json",
+            url: "/api/courses/" + id,
+            contentType: "application/json; charset=utf-8",
+            success: function(result) {
+                $("#deleteCourse").html(JSON.stringify(result));
+            },
+            error: function() {
+                $("#deleteCourse").html("Error");
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

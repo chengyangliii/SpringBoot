@@ -4,23 +4,27 @@ import com.example.demo.SpringBoot.entity.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-import java.util.Map;
 
 public interface UserDao {
 
-    @Select("select id,name,password from tb_user where id = #{id}")
+    @Select("select id,name,password from Student where id = #{id}")
     User getUserById(Integer id);
 
-    @Select("select * from tb_user")
+    @Select("select * from Student")
     List<User> findAllUsers();
 
-    @Insert("insert into tb_user(name,password) values(#{name},#{password})")
+    @Insert("insert into Student(name,password) values(#{name},#{password})")
     int insertUser(User User);
 
-    @Update("update tb_user set name=#{name},password=#{password} where id=#{id}")
+    @Update("update Student set name=#{name},password=#{password} where id=#{id}")
     int updUser(User User);
 
-    @Delete("delete from tb_user where id=#{id}")
+    @Delete("delete from Student where id=#{id}")
     int delUser(Integer id);
+
+
+
+
+
 }
 

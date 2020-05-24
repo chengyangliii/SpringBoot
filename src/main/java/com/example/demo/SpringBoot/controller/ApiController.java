@@ -1,20 +1,15 @@
 package com.example.demo.SpringBoot.controller;
 
-
 import com.example.demo.SpringBoot.common.Result;
 import com.example.demo.SpringBoot.common.ResultGenerator;
 import com.example.demo.SpringBoot.dao.UserDao;
-import com.example.demo.SpringBoot.entity.Topic;
 import com.example.demo.SpringBoot.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/api")

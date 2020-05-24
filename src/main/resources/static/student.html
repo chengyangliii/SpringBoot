@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>lou.SpringBoot | api 请求测试</title>
+    <title>Course Management System</title>
 </head>
 <body class="hold-transition login-page">
 <div style="width:720px;margin:7% auto">
@@ -114,13 +114,17 @@
             <a href="#" class="btn btn-primary" onclick="requestDelete()">发送删除请求</a>
         </div>
     </div>
-    <hr />
+
 </div>
 
 
-<!-- jQuery -->
+
+
+
 <script src="https://cdn.staticfile.org/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript">
+
+
     function requestQuery() {
         var id = $("#queryId").val();
         if (typeof id == "undefined" || id == null || id == "" || id < 0) {
